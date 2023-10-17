@@ -4,7 +4,7 @@ using Apiuniversidade.Context;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add DbContext to access PostareSQL
-var connectionString =builder.Configuration.GetConnectionString("PosteSQL");
+var connectionString =builder.Configuration.GetConnectionString("PostgreSQL");
 builder.Services.AddDbContext<ApiuniversidadeContext>(options => options.UseNpgsql(connectionString));
 
 // Add services to the container.
