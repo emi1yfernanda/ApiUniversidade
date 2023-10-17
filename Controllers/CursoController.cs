@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Apiuniversidade.Context;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 
 namespace Apiuniversidade.Controllers
 {
@@ -21,6 +22,16 @@ namespace Apiuniversidade.Controllers
                 return NotFound();
 
                 return cursos;
+        }
+
+        [HttpPost]
+        public ActionResult Post(Curso curso){
+            _context.Curso.Add(curso);
+            _context.SaveChanges();
+
+            return new CreatedAtRouteResult("GetCurso",
+                new { id = curso.id},
+                curso);
         }
 
         private readonly ILogger<CursoController>_logger;
