@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Apiuniversidade.Context;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Apiuniversidade.Controllers
 {
@@ -32,6 +35,29 @@ namespace Apiuniversidade.Controllers
             return new CreatedAtRouteResult("GetCurso",
                 new { id = curso.id},
                 curso);
+
+        }
+
+        [HttpGet("{id:int}", Name = "GetCurso")]
+        public ActionResult<Curso> Get1(int id)
+        {
+            var curso = _context.Curso.FirstOrDefault(p => p.Id == id);
+            if (curso is null)
+                return NotFound("Curso não encontrado");
+
+            return curso;
+        }
+
+        [HttpPut("{id:int}")]
+        public ActionResult Put(int id, Curso curso)
+        {
+            if(id != curso.Id)
+                return BadRequest();
+
+            _context.Entry(curso).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            return Ok(curso);
         }
 
         private readonly ILogger<CursoController>_logger;

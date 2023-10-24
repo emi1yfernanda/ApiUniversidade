@@ -14,6 +14,7 @@ namespace Apiuniversidade.Model
         
         public List<Disciplina> disciplinas {get; set;}
         public List<Aluno> Alunos {get; set;}
+        public int Id { get; internal set; }
 
         public Curso(){
             disciplinas = new List<Disciplina>();
