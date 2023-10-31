@@ -60,6 +60,19 @@ namespace Apiuniversidade.Controllers
             return Ok(curso);
         }
 
+        [HttpDelete("{id:int}")]
+        public ActionResult Delete(int id){
+            var curso = _context.Curso.FirstOrDefault(p => p.Id == id);
+
+            if (curso is null)
+                return NotFound();
+
+            _context.Curso.Remove(curso);
+            _context.SaveChanges();
+
+            return Ok(curso);
+        }
+
         private readonly ILogger<CursoController>_logger;
 
         private readonly ApiuniversidadeContext _context;
