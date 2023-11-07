@@ -9,8 +9,7 @@ namespace Apiuniversidade.Context
 {
     public class ApiuniversidadeContext : DbContext
     {
-        internal object cursos;
-
+   
         public ApiuniversidadeContext(DbContextOptions options) : base(options){}
         // DbContextOptions é uma clase auxiliar para tranportar informações de configurações de acesso ao banco.
         

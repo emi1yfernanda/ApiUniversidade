@@ -33,7 +33,7 @@ namespace Apiuniversidade.Controllers
             _context.SaveChanges();
 
             return new CreatedAtRouteResult("GetCurso",
-                new { id = curso.id},
+                new { id = curso.Id},
                 curso);
 
         }
@@ -80,7 +80,7 @@ namespace Apiuniversidade.Controllers
         public CursoController(ILogger<CursoController> logger, ApiuniversidadeContext context)
         {
             _logger = logger;
-            _context = _context;
+            _context = context;
         }
 
     }

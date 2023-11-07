@@ -3,6 +3,7 @@ using System;
 using Apiuniversidade.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Apiuniversidade.Migrations
 {
     [DbContext(typeof(ApiuniversidadeContext))]
-    partial class ApiuniversidadeContextModelSnapshot : ModelSnapshot
+    [Migration("20231107140857_updatingModels")]
+    partial class updatingModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

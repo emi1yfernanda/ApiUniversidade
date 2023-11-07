@@ -13,13 +13,24 @@ namespace Apiuniversidade.Controllers
     [Route("api/[controller]")]
     public class DisciplinaController : ControllerBase
     {
+
+        [HttpGet]
+        public ActionResult <IEnumerable <Disciplina>> Get()
+        {
+            var disciplina = _context.Disciplina.ToList();
+            if(disciplina is null)
+                return NotFound();
+
+                return disciplina;
+        }
+
         [HttpPost]
         public ActionResult Post(Disciplina disciplina){
             _context.Disciplina.Add(disciplina);
             _context.SaveChanges();
 
             return new CreatedAtRouteResult("GetDisciplina",
-                new { id = disciplina.id},
+                new { id = disciplina.Id},
                 disciplina);
 
         }
@@ -27,7 +38,7 @@ namespace Apiuniversidade.Controllers
         [HttpGet("{id:int}", Name = "GetDisciplina")]
         public ActionResult<Disciplina> Get1(int id)
         {
-            var disciplina = _context.Disciplina.FirstOrDefault(p => p.id == id);
+            var disciplina = _context.Disciplina.FirstOrDefault(p => p.Id == id);
             if (disciplina is null)
                 return NotFound("Disciplina não encontrada");
 
@@ -37,7 +48,7 @@ namespace Apiuniversidade.Controllers
         [HttpPut("{id:int}")]
         public ActionResult Put(int id, Disciplina disciplina)
         {
-            if(id != disciplina.id)
+            if(id != disciplina.Id)
                 return BadRequest();
 
             _context.Entry(disciplina).State = EntityState.Modified;
@@ -48,7 +59,7 @@ namespace Apiuniversidade.Controllers
 
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id){
-            var disciplina = _context.Disciplina.FirstOrDefault(p => p.id == id);
+            var disciplina = _context.Disciplina.FirstOrDefault(p => p.Id == id);
 
             if (disciplina is null)
                 return NotFound();
@@ -68,7 +79,7 @@ namespace Apiuniversidade.Controllers
         public DisciplinaController(ILogger<DisciplinaController> logger, ApiuniversidadeContext context)
         {
             _logger = logger;
-            _context = _context;
+            _context = context;
         }
     }
 }

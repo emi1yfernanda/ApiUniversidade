@@ -80,7 +80,7 @@ namespace Apiuniversidade.Controllers
         public AlunoController(ILogger<AlunoController> logger, ApiuniversidadeContext context)
         {
             _logger = logger;
-            _context = _context;
+            _context = context;
         }
     }
 }
